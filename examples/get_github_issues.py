@@ -1,8 +1,8 @@
 import typing
 
-from openai_pseudo_code import pseudo_code
+from pseudocode import pseudo_function
 
-@pseudo_code
+@pseudo_function
 def get_issues(respository: str) -> typing.List[int]:
     """A function to fetch all issues created by
 
@@ -13,14 +13,6 @@ def get_issues(respository: str) -> typing.List[int]:
      - fetch all github issues from repository in last 10 days
      - only show issue numbers with are odd
      - return the issue first 10 characters
-
-    Parameters
-    ----------
-    repository: str
-
-    Returns
-    -------
-    list[str]
 
     Examples
     --------

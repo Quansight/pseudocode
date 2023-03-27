@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+ignore-vcs = true
+
+[project]
+name = "pseudocode"
+description = "A code base to program at a high level using OpenAI"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.7"
+keywords = ["openai"]
+authors = [{ name = "Chris Ostrouchov", email = "chris.ostrouchov@gmail.com"}]
+dynamic = ["version"]
+dependencies = [
+   "openai",
+   "docstring-parser",
+   "pydantic",
+   "rich"
+]
+
+[tool.hatch.version]
+path = "pseduo_code/__init__.py"
+
+[tool.black]
+line-length = 120
+skip-string-normalization = true
+target-version = ["py37"]

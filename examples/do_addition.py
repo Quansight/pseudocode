@@ -1,7 +1,7 @@
-from openai_pseudo_code import pseudo_code
+from pseudocode import pseudo_function
 
 
-@pseudo_code
+@pseudo_function(review=True)
 def calculate_interesting_sum(a: int, b: int, c: int) -> str:
     """A creative sum function
 
@@ -9,16 +9,6 @@ def calculate_interesting_sum(a: int, b: int, c: int) -> str:
      - write all your code like a beginner that came from c
      - calculates the sum of a, b, c
      - multiply result by two
-
-    Parameters
-    ----------
-    a: int
-    b: int
-    c: int
-
-    Returns
-    -------
-    str
 
     Examples
     --------
