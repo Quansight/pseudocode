@@ -1,10 +1,10 @@
 # PseudoCode
 
 `pseudocode` is a python module which allows users to describe the
-functions they want without writing the actual code. It empowers users
-to iterate with [large language
-models](https://en.wikipedia.org/wiki/Large_language_model) to
-generate functions which satisfy the user along with defined tests.
+functions they want via type annotations and docstrings without
+writing the actual code. It empowers users to iterate with [large
+language models](https://en.wikipedia.org/wiki/Large_language_model)
+to generate functions which satisfy the user along with defined tests.
 
 ```python
 from pseudocode import pseudo_function
@@ -16,7 +16,7 @@ def my_sum_func(a: int, b: int, c: int) -> str:
     Examples
     --------
     >>> my_sum_func(1, 2, 3)
-    6
+    12
     """
     pass
 
