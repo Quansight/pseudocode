@@ -6,6 +6,11 @@ writing the actual code. It empowers users to iterate with [large
 language models](https://en.wikipedia.org/wiki/Large_language_model)
 to generate functions which satisfy the user along with defined tests.
 
+`pseudocode` enforces the defined tests and provides automated
+feedback to the LLM when attempting to run these tests by reporting
+exceptions. There is a built in review cycle for the user to provide
+feedback on the generated code to help guide the LLM.
+
 ```python
 from pseudocode import pseudo_function
 
