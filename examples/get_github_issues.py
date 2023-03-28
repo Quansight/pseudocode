@@ -12,7 +12,7 @@ def get_issues(respository: str) -> typing.List[int]:
      - use the requests library
      - fetch all github issues from repository in last 10 days
      - only show issue numbers with are odd
-     - return the issue first 10 characters
+     - return the issue titles
 
     Examples
     --------
