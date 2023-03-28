@@ -21,6 +21,13 @@ dependencies = [
    "rich"
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pandas",
+    "pytest",
+    "black",
+]
+
 [tool.hatch.version]
 path = "pseudocode/__init__.py"
 

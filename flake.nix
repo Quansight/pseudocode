@@ -20,6 +20,7 @@
 
                 pythonPackages.pandas
                 pythonPackages.black
+                pythonPackages.pytest
               ];
             };
   };
