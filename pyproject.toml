@@ -22,9 +22,8 @@ dependencies = [
 ]
 
 [tool.hatch.version]
-path = "pseduo_code/__init__.py"
+path = "pseudocode/__init__.py"
 
 [tool.black]
 line-length = 120
-skip-string-normalization = true
-target-version = ["py37"]
+target-version = ["py310"]

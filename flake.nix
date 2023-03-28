@@ -17,7 +17,9 @@
                 pythonPackages.docstring-parser
                 pythonPackages.pydantic
                 pythonPackages.rich
+
                 pythonPackages.pandas
+                pythonPackages.black
               ];
             };
   };
