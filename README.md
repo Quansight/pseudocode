@@ -11,6 +11,8 @@ feedback to the LLM when attempting to run these tests by reporting
 exceptions. There is a built in review cycle for the user to provide
 feedback on the generated code to help guide the LLM.
 
+[![asciicast](https://asciinema.org/a/xXpi8CX1qrL7U04m1uZPWBAiN.svg)](https://asciinema.org/a/xXpi8CX1qrL7U04m1uZPWBAiN)
+
 ```python
 from pseudocode import pseudo_function
 
