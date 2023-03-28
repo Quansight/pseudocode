@@ -36,22 +36,6 @@ class OpenAIMessage(pydantic.BaseModel):
         use_enum_values = True
 
 
-def generate_initial_openai_messages(func: typing.Callable):
-    message, test_cases = function_description_to_openai_message(func)
-    messages = [
-        OpenAIMessage(
-            role=OpenAIRole.SYSTEM,
-            content="""
-You are a helpful assistant which only outputs python code in response to questions with no additional text.
-You always return a python function named run within code blocks ```python ... ```.
-Do not include docstrings or type annotations with the function.
-"""
-        ),
-        message,
-    ]
-    return messages, test_cases
-
-
 def function_description_to_openai_message(func: typing.Callable):
     doc = docstring_parser.parse(func.__doc__)
 
@@ -86,7 +70,7 @@ The function takes the following arguments:
     return message, test_cases
 
 
-def openai_create_python_function_from_messages(messages: typing.List[OpenAIMessage], review: bool = False):
+def create_python_function_from_openai_messages(messages: typing.List[OpenAIMessage], review: bool = False):
     response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[_.dict() for _ in messages])
     response_text = response.choices[0].message.content
     messages.append(OpenAIMessage(
@@ -119,11 +103,23 @@ def openai_create_python_function_from_messages(messages: typing.List[OpenAIMess
     return state['run']
 
 
-def generate_python_function_from_description(func: typing.Callable, max_attempts: int = 5, review: bool = False):
-    messages, test_cases = generate_initial_openai_messages(func)
+def iterate_python_function_from_description(func: typing.Callable, max_attempts: int = 5, review: bool = False):
+    message, test_cases = function_description_to_openai_message(func)
+    messages = [
+        OpenAIMessage(
+            role=OpenAIRole.SYSTEM,
+            content="""
+You are a helpful assistant which only outputs python code in response to questions with no additional text.
+You always return a python function named run within code blocks ```python ... ```.
+Do not include docstrings or type annotations with the function.
+"""
+        ),
+        message,
+    ]
+
     for attempt in range(max_attempts):
         try:
-            generated_func = openai_create_python_function_from_messages(messages, review=review)
+            generated_func = create_python_function_from_openai_messages(messages, review=review)
             for test_case, result in test_cases:
                 state = {'run': generated_func}
                 try:
@@ -154,7 +150,7 @@ def pseudo_function(func: typing.Callable = None, review: bool = False):
     if func is None:
         return lambda func: pseudo_function(func=func, review=review)
 
-    generated_func = generate_python_function_from_description(func, review=review)
+    generated_func = iterate_python_function_from_description(func, review=review)
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         return generated_func(*args, **kwargs)
