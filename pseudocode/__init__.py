@@ -78,7 +78,7 @@ def create_python_function_from_openai_messages(messages: typing.List[OpenAIMess
         )
     )
 
-    match = re.search("```python(.*)```", response_text, re.DOTALL)
+    match = re.search("```python(.*?)```", response_text, re.DOTALL)
     if match is None:
         raise OpenAIException("Your response must be wrapped in ```python ... ```")
 
