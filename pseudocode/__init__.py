@@ -57,7 +57,9 @@ The function takes the following arguments:
     if "return" in func_type_hints:
         function_description += f'This function must return a result of python type "{str(func_type_hints["return"])}".'
 
-    function_description += "\nOutput code that will satisfy the given requirments."
+    function_description += "\nOutput code that will satisfy the given requirements."
+    console.print(Panel(function_description, title="Function Specification"))
+
     message = OpenAIMessage(role=OpenAIRole.USER, content=function_description)
 
     test_cases = []
@@ -100,7 +102,7 @@ def create_python_function_from_openai_messages(messages: typing.List[OpenAIMess
         )
 
     if "run" not in state:
-        raise OpenAIException("Your response did not include a python function named run. Could you try to fix this?")
+        raise OpenAIException("Your response did not include a python function named run with required args and kwargs. Could you try to fix this?")
 
     return state["run"]
 
@@ -137,10 +139,10 @@ Do not include docstrings or type annotations with the function.
                         f'The following python test case `{test_case} == {result}` failed and gave the wrong result of "{state["result"]}"'
                     )
                 else:
-                    console.print(f"[bold]pass[/bold] {test_case}=={state['result']}", style="green")
+                    console.print(f"[bold]pass[/bold] {test_case}", style="green")
             break
         except OpenAIException as e:
-            console.print(e.args[0], style="red")
+            console.print(Panel(e.args[0], title='LLM Feedback', style="red"))
             messages.append(
                 OpenAIMessage(
                     role=OpenAIRole.USER,
