@@ -1,5 +1,7 @@
 # PseudoCode
 
+[There is a blog post about this project](https://quansight.com/post/openai-pseudocode).
+
 `pseudocode` is a python module which allows users to describe the
 functions they want via type annotations and docstrings without
 writing the actual code. It empowers users to iterate with [large
@@ -11,7 +13,7 @@ feedback to the LLM when attempting to run these tests by reporting
 exceptions. There is a built in review cycle for the user to provide
 feedback on the generated code to help guide the LLM.
 
-[![asciicast](https://asciinema.org/a/xXpi8CX1qrL7U04m1uZPWBAiN.svg)](https://asciinema.org/a/xXpi8CX1qrL7U04m1uZPWBAiN)
+[![asciicast](https://asciinema.org/a/573724.svg)](https://asciinema.org/a/573724)
 
 ```python
 from pseudocode import pseudo_function
